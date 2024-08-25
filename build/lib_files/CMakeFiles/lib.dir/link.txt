@@ -1,0 +1,1 @@
+/usr/bin/c++ -fPIC -shared -Wl,-soname,liblib.so -o liblib.so CMakeFiles/lib.dir/Simulation.cpp.o CMakeFiles/lib.dir/grid.cpp.o  -lraylib 

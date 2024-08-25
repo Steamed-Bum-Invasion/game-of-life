@@ -1,0 +1,20 @@
+[
+{
+  "directory": "/home/dhruv/code/my_repos/game_of_life/build",
+  "command": "/usr/bin/c++  -I/home/dhruv/code/my_repos/game_of_life/lib_files  -o CMakeFiles/game_of_life.dir/executables/main.cpp.o -c /home/dhruv/code/my_repos/game_of_life/executables/main.cpp",
+  "file": "/home/dhruv/code/my_repos/game_of_life/executables/main.cpp",
+  "output": "CMakeFiles/game_of_life.dir/executables/main.cpp.o"
+},
+{
+  "directory": "/home/dhruv/code/my_repos/game_of_life/build/lib_files",
+  "command": "/usr/bin/c++ -Dlib_EXPORTS -I/home/dhruv/code/my_repos/game_of_life/lib_files -fPIC -o CMakeFiles/lib.dir/Simulation.cpp.o -c /home/dhruv/code/my_repos/game_of_life/lib_files/Simulation.cpp",
+  "file": "/home/dhruv/code/my_repos/game_of_life/lib_files/Simulation.cpp",
+  "output": "lib_files/CMakeFiles/lib.dir/Simulation.cpp.o"
+},
+{
+  "directory": "/home/dhruv/code/my_repos/game_of_life/build/lib_files",
+  "command": "/usr/bin/c++ -Dlib_EXPORTS -I/home/dhruv/code/my_repos/game_of_life/lib_files -fPIC -o CMakeFiles/lib.dir/grid.cpp.o -c /home/dhruv/code/my_repos/game_of_life/lib_files/grid.cpp",
+  "file": "/home/dhruv/code/my_repos/game_of_life/lib_files/grid.cpp",
+  "output": "lib_files/CMakeFiles/lib.dir/grid.cpp.o"
+}
+]

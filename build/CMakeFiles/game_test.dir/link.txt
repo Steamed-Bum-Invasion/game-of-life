@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/game_test.dir/executables/main.cpp.o -o /home/dhruv/code/my_repos/game_of_life/bin/game_test  -Wl,-rpath,/home/dhruv/code/my_repos/game_of_life/build/lib_files -lraylib lib_files/liblib.so -lraylib 
