@@ -8,13 +8,15 @@ class Grid {
 public:
     Grid(const int& width, const int& height, const int& cellsize);
 
-    void Draw();
+    void draw();
     void set_value(int row, int col, int value);
-    bool getValue(int row, int col);
-    int getRowcount ();
-    int getColcount ();
-    std::vector<std::vector<bool>> getGrid ();
-    void setGrid (std::vector<std::vector<bool>> grid_copy);
+    bool get_value(int row, int col);
+    int get_rowcount ();
+    int get_colcount ();
+    std::vector<std::vector<bool>> get_grid ();
+    void set_grid (std::vector<std::vector<bool>> grid_copy);
+    void toggle_cell (int row, int col);
+    void clear();
 
 private:
     int m_rows;

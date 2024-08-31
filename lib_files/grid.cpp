@@ -11,7 +11,7 @@ Grid::Grid(const int& width, const int& height, const int& cellsize)
 {
 };
 
-void Grid::Draw(){
+void Grid::draw(){
 
 
     for (int row = 0; row < m_rows; row++) {
@@ -32,7 +32,7 @@ void Grid::set_value(int row, int col, int value){
     }
 }
 
-bool Grid::getValue(int row, int col){
+bool Grid::get_value(int row, int col){
     if (row >=0 && row < m_rows && col >= 0 && col < m_collums){
         return cells[row][col];
     }
@@ -41,20 +41,28 @@ bool Grid::getValue(int row, int col){
     }
 }
 
-int Grid::getColcount(){
+int Grid::get_colcount(){
     return m_collums;
 }
 
-int Grid::getRowcount(){
+int Grid::get_rowcount(){
     return m_rows;
 }
 
- std::vector<std::vector<bool>> Grid::getGrid(){
+ std::vector<std::vector<bool>> Grid::get_grid(){
     return cells;
 }
 
 
- void Grid::setGrid(std::vector<std::vector<bool>> grid_copy){
+ void Grid::set_grid(std::vector<std::vector<bool>> grid_copy){
     cells = grid_copy;
     
+}
+
+void Grid::toggle_cell(int row, int col){
+    cells[row][col] = !cells[row][col];
+}
+
+void Grid::clear(){
+    cells = std::vector<std::vector<bool>>(m_rows, std::vector<bool>(m_collums, false));
 }

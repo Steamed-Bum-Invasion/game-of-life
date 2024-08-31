@@ -6,8 +6,8 @@ Simulation::Simulation(int width, int height, int cellsize)
    : grid(width,height,cellsize)
 {};
 
-void Simulation::Draw(){
-    grid.Draw();
+void Simulation::draw(){
+    grid.draw();
 }
 
 void Simulation::set_value(int row, int col, bool value){
@@ -22,79 +22,104 @@ int Simulation::neighbour_count(int row, int col){
    };
    
    /*int value = grid.getValue(row,col);*/
-   int neighbourCount {0};
+   int num_neighbours {0};
 
    for (auto offset : offsets) {
       
-      int neighbour_row = (row + offset.first + grid.getRowcount()) % grid.getRowcount();
-      int neighbour_col = (col + offset.second + grid.getColcount()) % grid.getColcount();
+      int neighbour_row = (row + offset.first + grid.get_rowcount()) % grid.get_rowcount();
+      int neighbour_col = (col + offset.second + grid.get_colcount()) % grid.get_colcount();
 
-      if (neighbour_row >= 0 && neighbour_row <=grid.getColcount() && neighbour_col >=0 && neighbour_col <=grid.getRowcount()){
+      if (neighbour_row >= 0 && neighbour_row <=grid.get_colcount() && neighbour_col >=0 && neighbour_col <=grid.get_rowcount()){
 
-         if (grid.getValue(neighbour_row,neighbour_col) == 1){
-            ++neighbourCount;
+         if (grid.get_value(neighbour_row,neighbour_col) == 1){
+            ++num_neighbours;
          }
       }
    }
 
    /*std::cout << neighbourCount << "\n";*/
-   return neighbourCount;            
+   return num_neighbours;            
 }
 
 
 void Simulation::rule_check() {
-    auto grid_copy = grid.getGrid();
+    if (run_state){
 
-    int numRows = grid.getRowcount(); // Assuming these methods are available
-    int numCols = grid.getColcount();
+        auto grid_copy = grid.get_grid();
 
-    for (int row = 0; row < numRows; ++row) {
-        for (int col = 0; col < numCols; ++col) {
-            // Get the current value of the cell
-            int currentValue = grid.getValue(row, col);
+        int numRows = grid.get_rowcount(); // Assuming these methods are available
+        int numCols = grid.get_colcount();
 
-            // Check neighbor count
-            int neighbors = neighbour_count(row, col);
+        for (int row = 0; row < numRows; ++row) {
+            for (int col = 0; col < numCols; ++col) {
+                // Get the current value of the cell
+                int currentValue = grid.get_value(row, col);
 
-            if (currentValue == 0) {
-                // Cell is dead; it becomes alive if exactly 3 neighbors are alive
-                if (neighbors == 3) {
-                    grid_copy[row][col] = 1;
-                }
-            } else if (currentValue == 1) {
-                // Cell is alive; it stays alive if 2 or 3 neighbors are alive
-                if (neighbors == 2 || neighbors == 3) {
-                    grid_copy[row][col] = 1;
-                } else {
-                    // Otherwise, the cell dies
-                    grid_copy[row][col] = 0;
+                // Check neighbor count
+                int neighbors = neighbour_count(row, col);
+
+                if (currentValue == 0) {
+                    // Cell is dead; it becomes alive if exactly 3 neighbors are alive
+                    if (neighbors == 3) {
+                        grid_copy[row][col] = 1;
+                    }
+                } else if (currentValue == 1) {
+                    // Cell is alive; it stays alive if 2 or 3 neighbors are alive
+                    if (neighbors == 2 || neighbors == 3) {
+                        grid_copy[row][col] = 1;
+                    } else {
+                        // Otherwise, the cell dies
+                        grid_copy[row][col] = 0;
+                    }
                 }
             }
         }
+        // Update the original grid with the new state
+        grid.set_grid(grid_copy);
     }
-
-    // Update the original grid with the new state
-    grid.setGrid(grid_copy);
 }
 
 void Simulation::set_init_state(){
 
-   int numRows = grid.getRowcount(); // Assuming these methods are available
-   int numCols = grid.getColcount();
+    if (!is_running()){
+       int numRows = grid.get_rowcount(); // Assuming these methods are available
+       int numCols = grid.get_colcount();
 
-   // Set up the random number generator
-    std::random_device rd; // Obtain a seed from the hardware
-    std::mt19937 gen(rd()); // Mersenne Twister engine seeded with rd
-    std::uniform_int_distribution<> dis(0, 1); // Distribution in range [0, 1]
-   
-    for (int row = 0; row < numRows; ++row) {
-      for (int col = 0; col < numCols; ++col) {
+       // Set up the random number generator
+        std::random_device rd; // Obtain a seed from the hardware
+        std::mt19937 gen(rd()); // Mersenne Twister engine seeded with rd
+        std::uniform_int_distribution<> dis(0, 1); // Distribution in range [0, 1]
+       
+        for (int row = 0; row < numRows; ++row) {
+          for (int col = 0; col < numCols; ++col) {
 
-      
-      bool value = dis(gen) ==1;
-      grid.set_value(row,col,value);
+          
+          bool value = dis(gen) ==1;
+          grid.set_value(row,col,value);
 
-      }
-   }
-   
+          }
+       }
+    }
+}
+
+bool Simulation::is_running(){
+    return run_state;
+}
+
+void Simulation::start(){
+     run_state = true;
+}
+
+void Simulation::stop(){
+     run_state = false;
+}
+
+void Simulation::toggle_cell(int row, int col){
+    if (!is_running()){
+        grid.toggle_cell(row,col);
+    }
+}
+
+void Simulation::clear(){
+    grid.clear();
 }
