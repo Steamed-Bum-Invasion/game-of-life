@@ -1,0 +1,12 @@
+# ignore the following
+
+# .cache folder
+.cache/
+
+# bin folder
+bin/
+
+# build folder 
+build/
+
+
