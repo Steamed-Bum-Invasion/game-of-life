@@ -13,7 +13,7 @@ find_package(raylib ${RAYLIB_VERSION} QUIET) # QUIET or REQUIRED
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 
 # add_subdirectory(src)
-add_subdirectory(lib_files)
+add_subdirectory(include)
 
 # Executables
 add_executable(${PROJECT_NAME} executables/main.cpp)
