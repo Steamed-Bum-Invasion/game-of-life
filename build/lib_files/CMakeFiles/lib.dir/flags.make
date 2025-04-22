@@ -6,5 +6,5 @@ CXX_DEFINES = -Dlib_EXPORTS
 
 CXX_INCLUDES = -I/home/dhruv/code/my_repos/game_of_life/lib_files
 
-CXX_FLAGS = -fPIC
+CXX_FLAGS = -std=gnu++20 -fPIC
 

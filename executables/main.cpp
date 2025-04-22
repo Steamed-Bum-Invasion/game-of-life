@@ -2,7 +2,7 @@
 #include <iostream>
 #include <raylib.h>
 
-int main()
+  int main()
 {
     Color black = {0, 0, 0, 255};
     const int WINDOW_HEIGHT = 600;

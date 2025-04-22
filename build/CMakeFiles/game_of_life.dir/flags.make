@@ -6,5 +6,5 @@ CXX_DEFINES =
 
 CXX_INCLUDES = -I/home/dhruv/code/my_repos/game_of_life/lib_files
 
-CXX_FLAGS = 
+CXX_FLAGS = -std=gnu++20
 
